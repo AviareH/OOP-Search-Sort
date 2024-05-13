@@ -23,4 +23,5 @@ public class WeatherDatabase {
             System.out.println(dailyStats.getDayName() + ": " + dailyStats.getTemperature() + "°. Will Rain: " + dailyStats.getWillRain());
         }
     }
+
 }
