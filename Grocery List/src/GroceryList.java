@@ -1,8 +1,8 @@
 import java.util.*;
 public class GroceryList {
-    private HashMap<String, Double> groceries = new HashMap<String, Double>();
+    private ArrayList<String> groceries = new ArrayList<>();
 
-    public GroceryList(HashMap<String, Double> groceries) {
+    public GroceryList(ArrayList<String> groceries) {
         this.groceries = groceries;
     }
 
@@ -10,60 +10,55 @@ public class GroceryList {
         groceries.clear();
     }
 
-    public HashMap<String, Double> getGroceries() {
+    public ArrayList<String> getGroceries() {
         return groceries;
     }
 
-    public void setGroceries(HashMap<String, Double> groceries) {
+    public void setGroceries(ArrayList<String> groceries) {
         this.groceries = groceries;
     }
 
-    public void addGrocery(String name, double weight) {
-        groceries.put(name, weight);
+    public void addGrocery(String name) {
+        groceries.add(name.toLowerCase());
     }
 
     public boolean contains(String name) {
-        for (Map.Entry<String, Double> entry : groceries.entrySet()) {
-            if (Objects.equals(entry.getKey(), name)) {
+        for (String grocery : groceries) {
+            if(grocery.equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void formatPrint(){
-        int index = 1;
-        for (Map.Entry<String, Double> entry : groceries.entrySet()){
-            System.out.println(index+". \n\tName: "+entry.getKey());
-            System.out.println(String.format("\tWeight:  %.2f", entry.getValue())+" Kg");
-            index++;
+    public void formatPrint() {
+        for(int i=1;i<=groceries.size();i++){
+            System.out.println("Entry "+i+".\n\t"+groceries.get(i-1));
         }
     }
-
-    public void sortPrint(){
-
-    }
-    static void bubbleSort(HashMap<String, Double> list, int n)
+    static int MAX = 100;
+    public void sortPrint()
     {
-        int i, j, temp;
-        boolean swapped;
-        for (i = 0; i < n - 1; i++) {
-            swapped = false;
-            for (j = 0; j < n - i - 1; j++) {
-                if (list. > arr[j + 1]) {
+        String[] arr = groceries.toArray(new String[groceries.size()]);
 
-                    // Swap arr[j] and arr[j+1]
+        int n = arr.length;
+        String temp;
+
+        // Sorting strings using bubble sort
+        for (int j = 0; j < n - 1; j++) {
+            for (int i = j + 1; i < n; i++) {
+                if (arr[j].compareTo(arr[i]) > 0) {
                     temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    swapped = true;
+                    arr[j] = arr[i];
+                    arr[i] = temp;
                 }
             }
-
-            // If no two elements were
-            // swapped by inner loop, then break
-            if (swapped == false)
-                break;
+        }
+        for(int i=1;i<=arr.length;i++){
+            System.out.println("Entry "+i+".\n\t"+arr[i-1]);
         }
     }
+
 }
+
+

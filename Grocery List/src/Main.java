@@ -14,9 +14,7 @@ public class Main {
                         System.out.println("Entry " + i + ".");
                         System.out.print("\tName: ");
                         String name = input.next();
-                        System.out.print("\tWeight: ");
-                        double weight = input.nextDouble();
-                        list.addGrocery(name, weight);
+                        list.addGrocery(name);
                     }
                     break;
                 } else{
@@ -42,18 +40,19 @@ public class Main {
                 System.out.print("Y/N: ");
                 String choice = input.next();
                 if(choice.equals("Y")){
-                    System.out.print("Weight: ");
-                    double weight = input.nextDouble();
-                    list.addGrocery(lookFor,weight);
+                    list.addGrocery(lookFor);
                     System.out.println("Added to List\n");
+                    continue;
                 }
                 else{
-                    break;
+                    continue;
                 }
             }
             System.out.println("Found "+lookFor);
         }
 
         list.formatPrint();
+        System.out.println("---------------SORTED------------------");
+        list.sortPrint();
     }
 }
