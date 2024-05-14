@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class WeatherDatabase {
-    private ArrayList<DailyStats> weather = new ArrayList<DailyStats>();
+    private static ArrayList<DailyStats> weather = new ArrayList<DailyStats>();
 
     public WeatherDatabase(){
 
@@ -21,6 +21,53 @@ public class WeatherDatabase {
     public void formatPrint(){
         for (DailyStats dailyStats : weather) {
             System.out.println(dailyStats.getDayName() + ": " + dailyStats.getTemperature() + "°. Will Rain: " + dailyStats.getWillRain());
+        }
+    }
+
+    public static void mergeSort(int l, int r) {
+        if (l < r) {
+            int m = (l + r) / 2;
+            mergeSort( l, m);
+            mergeSort( m + 1, r);
+            merge(l, m, r);
+        }
+    }
+
+    private static void merge(int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        ArrayList<DailyStats> L = new ArrayList<>(n1);
+        ArrayList<DailyStats> R = new ArrayList<>(n2);
+
+        for (int i = 0; i < n1; ++i)
+            L.add(weather.get(l + i));
+        for (int j = 0; j < n2; ++j)
+            R.add(weather.get(m + 1 + j));
+
+        int i = 0, j = 0;
+        int k = l;
+        while (i < n1 && j < n2) {
+            if (L.get(i).getTemperature() >= R.get(j).getTemperature()) {
+                weather.set(k, L.get(i));
+                i++;
+            } else {
+                weather.set(k, R.get(j));
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            weather.set(k, L.get(i));
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            weather.set(k, R.get(j));
+            j++;
+            k++;
         }
     }
 
