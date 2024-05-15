@@ -71,4 +71,28 @@ public class WeatherDatabase {
         }
     }
 
+    public void flip(){
+        Collections.reverse(weather);
+    }
+    public int binarySearch(double num){
+        int low = 0;
+        int high = weather.size() - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            double midTemp = weather.get(mid).getTemperature();
+
+            if (Math.abs(midTemp - num) < 0.0001) {
+                return mid;
+            } else if (midTemp < num) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
 }
+
